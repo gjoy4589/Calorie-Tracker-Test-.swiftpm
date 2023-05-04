@@ -6,28 +6,39 @@
 //
 
 import SwiftUI
-
 struct Homescreen: View {
+    @State private var selectedTab = 0
     
     var body: some View {
-        Text("Hi, ")
-            .offset(x:-150, y:-200)
-            .font(.system(size: 25))
-        
-        RoundedRectangle(cornerRadius: 25, style: .continuous)
-            .fill(.gray)
-            .frame(width: 350, height: 250)
-            .offset(x:0,y:-200)
-        
-        Text("Actvity")
-            .offset(x:-100, y:-440)
-            .font(.system(size: 25))
+        TabView(selection: $selectedTab) {
+            NavigationView {
+                ContentView()
+            }
+            .tabItem {
+                Image(systemName: "square.grid.2x2.fill")
+                Text("Activities")
+            }
+            .tag(0)
             
-        Text("Do something today that your future self will thank you for")
-            .offset(x:50, y:-450)
-            .font(.system(size: 17))
-            .frame(width: 120, height:100, alignment: .center)
-        
+            NavigationView {
+                CardioTrackerView()
+            }
+            .tabItem {
+                Image(systemName: "chart.bar.fill")
+                Text("Cardio")
+            }
+            .tag(1)
+            
+            NavigationView {
+                LiftTrackerView()
+            }
+            .tabItem {
+                Image(systemName: "person.crop.circle.fill")
+                Text("Lift Activity")
+            }
+            .tag(2)
+        }
+        .accentColor(.purple)
     }
 }
 
