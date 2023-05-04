@@ -2,13 +2,12 @@
 
 import SwiftUI
 
-var longestRun = " "
-var lastRun = " "
-
 struct CardioTrackerView: View {
     
     @State var timeRemaining = 62
     
+    var longestRun = " "
+    var lastRun = " "
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     func convertSecondsToTime(timeInSeconds : Int) -> String {

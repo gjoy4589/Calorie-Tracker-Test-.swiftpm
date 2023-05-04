@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct CalorieTrackerView: View {
+struct ContentView: View {
     @State private var calorieIntake: String = ""
     @State private var calorieHistory: [Int] = []
     
@@ -64,6 +64,6 @@ struct CalorieTrackerView: View {
 
 struct CalorieTrackerView_Previews: PreviewProvider {
     static var previews: some View {
-        CalorieTrackerView()
+        ContentView()
     }
 }
