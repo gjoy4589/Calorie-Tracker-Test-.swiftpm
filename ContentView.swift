@@ -11,17 +11,27 @@ struct CalorieTrackerView: View {
     var body: some View {
         VStack {
             Text("Calorie Tracker")
-                .font(.title)
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .foregroundColor(.blue)
+                .padding()
             
             TextField("Enter calorie intake", text: $calorieIntake)
                 .padding()
                 .keyboardType(.numberPad)
             
-            Button("Add", action: {
+            Button(action: {
                 guard let calorie = Int(calorieIntake) else { return }
                 calorieHistory.append(calorie)
                 calorieIntake = ""
-            })
+            }) {
+                Text("Add")
+                    .fontWeight(.semibold)
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.blue)
+                    .cornerRadius(40)
+            }
             .padding()
             
             HStack {
@@ -34,6 +44,7 @@ struct CalorieTrackerView: View {
             List(calorieHistory, id: \.self) { calorie in
                 Text("\(calorie) calories")
             }
+            .listStyle(GroupedListStyle())
             
             HStack {
                 Text("Total Calories:")
@@ -44,6 +55,7 @@ struct CalorieTrackerView: View {
                     .font(.headline)
                     .padding(.top)
             }
+            
             Spacer()
         }
         .padding()
