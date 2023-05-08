@@ -57,7 +57,11 @@ struct LiftTrackerView: View {
     }
 }
 
- 
+struct LiftTrackerView_Previews: PreviewProvider {
+    static var previews: some View {
+        LiftTrackerView()
+    }
+}
     
     
 
