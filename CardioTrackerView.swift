@@ -8,7 +8,7 @@ struct CardioTrackerView: View {
     
     var longestRun = " "
     var lastRun = " "
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     func convertSecondsToTime(timeInSeconds : Int) -> String {
         
@@ -23,6 +23,12 @@ struct CardioTrackerView: View {
         VStack{
             Text("Cardio Tracker")
                 .font(.title)
+            Button("Start") {
+              //  startTimer()
+            }
+            Button("Stop") {
+                stopTimer()
+            }
             Text(convertSecondsToTime(timeInSeconds:timeRemaining))
                 .padding()
                 .font(.system(size: 100))
@@ -31,7 +37,18 @@ struct CardioTrackerView: View {
                     timeRemaining -= 1
                     
                 }
+            
         }
+        
+    }
+    
+  
+    func stopTimer() {
+        self.timer.upstream.connect().cancel()
+    }
+    
+    mutating func startTimer() {
+        self.timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
     }
     
     struct ContentView_Previews: PreviewProvider {
