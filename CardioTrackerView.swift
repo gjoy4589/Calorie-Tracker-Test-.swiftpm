@@ -4,21 +4,27 @@ import SwiftUI
 
 struct CardioTrackerView: View {
     
-    @State var timeRemaining = 62
     
+    @State var timeRemaining = 600
     var longestRun = " "
     var lastRun = " "
-    var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+   @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack{
+
+//            TextField("Enter Cardio Duration", text: $timeRemaining)
+            
             Text("Cardio Tracker")
                 .font(.title)
             Button("Start") {
-               // startTimer()
+                startTimer()
             }
             Button("Stop") {
                 stopTimer()
+            }
+            Button("Reset") {
+timeRemaining = 600
             }
             Text(convertSecondsToTime(timeInSeconds:timeRemaining))
                 .padding()
@@ -46,9 +52,13 @@ struct CardioTrackerView: View {
         self.timer.upstream.connect().cancel()
     }
     
-    mutating func startTimer() {
-        timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
-    }
+    func startTimer() {
+            self.timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
+        }
+    
+//    func reset() {
+//        Text(convertSecondsToTime(timeInSeconds:timeRemaining)) = timeRemaining
+//        }
     
     
 }
