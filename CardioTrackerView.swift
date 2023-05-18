@@ -16,15 +16,21 @@ struct CardioTrackerView: View {
 //            TextField("Enter Cardio Duration", text: $timeRemaining)
             
             Text("Cardio Tracker")
-                .font(.title)
+                .font(.largeTitle)
             Button("Start") {
                 startTimer()
             }
             Button("Stop") {
                 stopTimer()
             }
-            Button("Reset") {
-timeRemaining = 600
+            HStack{
+                Button("10 Minutes")
+                    {
+                    timeRemaining = 600
+                }
+                Button("15 Minutes"){
+                    timeRemaining = 900
+                }
             }
             Text(convertSecondsToTime(timeInSeconds:timeRemaining))
                 .padding()
@@ -53,7 +59,7 @@ timeRemaining = 600
     }
     
     func startTimer() {
-            self.timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
+            self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
         }
     
 //    func reset() {
