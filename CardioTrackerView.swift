@@ -17,6 +17,9 @@ struct CardioTrackerView: View {
             
             Text("Cardio Tracker")
                 .font(.largeTitle)
+                .fontWeight(.bold)
+                .foregroundColor(.blue)
+                .padding()
             Button("Start") {
                 startTimer()
             }
